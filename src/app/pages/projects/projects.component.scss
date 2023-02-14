@@ -1,0 +1,14 @@
+.page {
+  margin: var(--page-margins);
+}
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.content { grid-area: content; }
+.menu { grid-area: menu; }
+
+

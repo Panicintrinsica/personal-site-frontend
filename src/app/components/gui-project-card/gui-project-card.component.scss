@@ -1,0 +1,63 @@
+.segment.project {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  gap: 5px 10px;
+  grid-template-areas:
+    "image title"
+    "image content"
+    "image actions";
+
+  @media only screen and (max-width: 999px)  {
+    grid-template-columns: 100%;
+    grid-template-rows: min-content;
+    grid-template-areas:
+    "title"
+    "image"
+    "content"
+    "actions";
+  }
+}
+
+section.image {
+  grid-area: image;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+
+  img {
+    block-size: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+section.title-line {
+  border-bottom: 1px solid hsla(0,100%,100%,25%);
+  align-items: end;
+
+  .type {
+    flex-grow: 1;
+    opacity: 75%;
+  }
+
+  .date {
+    font-size: 1.25rem;
+    opacity: 75%;
+  };
+
+  .title {
+    line-height: 1.4rem;
+    padding-bottom: 0.75rem;
+    font-size: 1.7rem;
+  }
+}
+
+section.action-line {
+    justify-content: flex-end;
+}
+
+section.content {
+  grid-area: content;
+}

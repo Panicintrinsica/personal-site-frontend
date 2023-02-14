@@ -1,0 +1,16 @@
+.toolbar {
+  display: flex;
+  color: var(--bodyFont-color);
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.content { grid-area: content; }
+.menu { grid-area: menu; }

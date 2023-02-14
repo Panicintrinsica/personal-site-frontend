@@ -1,0 +1,435 @@
+<div class="page-container flex-row">
+
+  <ng-template [ngIf]="SimpleLayout">
+    <main *ngIf="profile$ | async as profile" class="resumePage" id="printable" [attr.data-theme]="theme">
+      <section class="sidebar">
+        <section class="profile" *ngIf="showHeader">
+          <div class="profile-photo" *ngIf="showPhoto">
+            <img src="assets/profile/avatar_roundable.png" alt="">
+          </div>
+          <div class="name">{{profile.name}}</div>
+          <div class="subline">Software Engineer ({{profile.pronouns}})</div>
+        </section>
+
+        <div class="sidebar-group" *ngIf="showInfo">
+          <div class="textBanner">Info</div>
+          <section class="info">
+            <div class="info-entry">
+              <div class="label">Citizenship:</div>
+              <div class="data">U.S</div>
+            </div>
+            <div class="info-entry">
+              <div class="label">Location:</div>
+              <div class="data">{{profile.location}}</div>
+            </div>
+            <div class="info-entry">
+              <div class="label">Languages:</div>
+              <div class="data">English</div>
+            </div>
+          </section>
+        </div>
+
+        <div class="sidebar-group" *ngIf="showContacts">
+          <div class="textBanner">Contacts</div>
+          <section class="contacts">
+            <div class="item" *ngIf="showEmail">
+              <mat-icon>email</mat-icon>
+              <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+            </div>
+            <div class="item" *ngIf="showPhone">
+              <mat-icon>phone</mat-icon>
+              <a href="tel:360-499-3845">(360) 499-EVIL</a>
+            </div>
+            <div class="item" *ngIf="showWebsite">
+              <mat-icon>website</mat-icon>
+              <a href="https://corbin.dev">Corbin.dev</a>
+            </div>
+            <div class="item" *ngIf="showLinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>
+            </div>
+            <div class="item" *ngIf="showGithub">
+              <i class="fa-brands fa-github"></i>
+              <a href="https://github.com/Panicintrinsica">Panicintrinsica</a>
+            </div>
+            <div class="item" *ngIf="showTwitter">
+              <i class="fa-brands fa-twitter"></i>
+              <a href="https://twitter.com/emrysCorbin">@EmrysCorbin</a>
+            </div>
+            <div class="item" *ngIf="showMastodon">
+              <i class="fa-brands fa-mastodon"></i>
+              <a href="https://mastodon.social/@emrysCorbin">@emrysCorbin@mastodon.social</a>
+            </div>
+            <div class="item" *ngIf="showTwitch">
+              <i class="fa-brands fa-twitch"></i>
+              <a href="https://www.twitch.tv/panicintrinsica/">Panicintrinsica</a>
+            </div>
+          </section>
+        </div>
+
+        <div class="sidebar-group" *ngIf="showSkills">
+          <div class="textBanner">Skills</div>
+          <section class="skills" *ngIf="skills$ | async as skills">
+            <div class="skill-list">
+              <div class="skill" *ngFor="let skill of skills">
+                <progress *ngIf="showProgress" max="100" [value]="skill.level"></progress>
+                <div class="name">{{skill.name}}</div>
+                <div *ngIf="!showProgress" class="skillLevel">
+                  <span *ngIf="skill.level < 20">Basic</span>
+                  <span *ngIf="skill.level >= 20 && skill.level < 40">Moderate</span>
+                  <span *ngIf="skill.level >= 40 && skill.level < 60">Intermediate</span>
+                  <span *ngIf="skill.level >= 60 && skill.level < 80">Advanced</span>
+                  <span *ngIf="skill.level >= 80 && skill.level < 100">Expert</span>
+                  <span *ngIf="skill.level == 100">Master</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="sidebar-group" *ngIf="showLearning">
+            <div class="textBanner">Learning</div>
+            <section class="learning">
+              <ul class="skill-list">
+                <li class="new-skill {{skillDecor}}" [attr.data-index]="i" *ngFor="let skill of newSkills; let i = index">{{skill}}</li>
+              </ul>
+            </section>
+        </div>
+
+
+      </section>
+      <section class="content">
+
+        <div class="intro" *ngIf="showIntro" [innerHTML]="profile.shortDescription">
+        </div>
+
+        <div class="section-wrapper" *ngIf="showObjective">
+          <div class="subsection">
+            <div class="textBanner">
+              Objective
+              <div class="pusher"></div>
+              <button mat-button color="primary" (click)="objectiveModal.open()">Edit</button>
+            </div>
+            <div class="info-block">
+              <div class="entry">
+                <p>{{currentObjective}}</p>
+              </div>
+            </div>
+          </div></div>
+
+        <div class="section-wrapper" *ngIf="showProjects" >
+        <div class="subsection" *ngIf="projects$ | async">
+          <div class="textBanner">Projects</div>
+          <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">
+            <div class="project entry" *ngFor="let project of projectList" cdkDrag cdkDragPreviewContainer="parent">
+              <div class="title-row draggable" cdkDragHandle>
+                <div class="name">{{project.name}}</div>
+                <div class="title">{{project.title}}</div>
+                <div class="dates">
+                  <ng-container *ngIf="diffYear(project.startDate, project.endDate)">
+                    {{project.startDate | date:"MMM. yyyy" }}
+                  </ng-container>
+                  <ng-container *ngIf="!diffYear(project.startDate, project.endDate)">
+                    {{project.startDate | date:"MMM." }}
+                  </ng-container>
+                  <span class="dateDivider" *ngIf="project.startDate && project.endDate"> - </span>
+                  {{project.endDate | date:"MMM. yyyy" }}
+                </div>
+              </div>
+              <div class="content" [innerHTML]="project.shortDescription">
+              </div>
+              <p class="content" *ngIf="project.name == 'CV Builder'">Used to generate this very document!</p>
+              <div class="meta">
+                <div class="item stack">
+                  <span class="label">Skills: </span>
+                  <span class="line-item" *ngFor="let skill of project.skills">{{skill.display}}</span>
+                </div>
+                <div class="pusher"></div>
+                <div class="item" *ngIf="project.hasLink">
+                  <span class="label">Link: </span>
+                  <a [href]="project.url">{{project.url}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+
+        <div class="section-wrapper" *ngIf="showEducation">
+        <div class="subsection" *ngIf="education$ | async as education">
+          <div class="textBanner">Education</div>
+          <div class="info-block" *ngFor="let institute of education">
+            <div class="entry">
+              <div class="title-row">
+                <div class="name">{{ institute.name }}</div>
+                <div class="gpa">GPA: {{ institute.gpa }} / {{ institute.gpaMax }}</div>
+                <div class="dates">Est. Grad: {{ institute.endMonth }}.{{ institute.endYear }}</div>
+              </div>
+              <div class="edu-fields">
+                <span class="text">Springfield, MO</span>
+                <span class="divider"> | </span>
+                <span class="text">{{ institute.degree | titlecase }}</span>
+                <span class="divider"> | </span>
+                <span class="text">{{ institute.major }}</span>
+              </div>
+
+  <!--            <div class="content" [innerHTML]="institute.details"></div>-->
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="subsection" *ngIf="showCerts">
+          <div class="textBanner">Certifications</div>
+        </div>
+
+        <div class="subsection" *ngIf="showAwards">
+          <div class="textBanner">Awards</div>
+        </div>
+
+      </section>
+    </main>
+  </ng-template>
+
+  <ng-template [ngIf]="!SimpleLayout">
+
+    <div class="resumePage-single">
+      <main *ngIf="profile$ | async as profile" class="resumePage-single" id="printable" [attr.data-theme]="theme">
+        <section class="content">
+          <section *ngIf="showHeader" class="profile simple">
+            <div class="name">{{profile.name}}</div>
+            <div class="subline">Software Engineer ({{profile.pronouns}})</div>
+          </section>
+
+          <section *ngIf="showContacts"  class="contacts simple">
+            <div class="item" *ngIf="showEmail">
+              <mat-icon>email</mat-icon>
+              <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+            </div>
+            <div class="item" *ngIf="showPhone">
+              <mat-icon>phone</mat-icon>
+              <a href="tel:360-499-3845">(360) 499-EVIL</a>
+            </div>
+            <div class="item" *ngIf="showWebsite">
+              <mat-icon>website</mat-icon>
+              <a href="https://corbin.dev">Corbin.dev</a>
+            </div>
+            <div class="item" *ngIf="showLinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>
+            </div>
+            <div class="item" *ngIf="showGithub">
+              <i class="fa-brands fa-github"></i>
+              <a href="https://github.com/Panicintrinsica">Panicintrinsica</a>
+            </div>
+            <div class="item" *ngIf="showTwitter">
+              <i class="fa-brands fa-twitter"></i>
+              <a href="https://twitter.com/emrysCorbin">@EmrysCorbin</a>
+            </div>
+            <div class="item" *ngIf="showMastodon">
+              <i class="fa-brands fa-mastodon"></i>
+              <a href="https://mastodon.social/@emrysCorbin">@emrysCorbin@mastodon.social</a>
+            </div>
+            <div class="item" *ngIf="showTwitch">
+              <i class="fa-brands fa-twitch"></i>
+              <a href="https://www.twitch.tv/panicintrinsica/">Panicintrinsica</a>
+            </div>
+          </section>
+
+          <section *ngIf="showIntro" class="intro simple" [innerHTML]="profile.shortDescription"></section>
+
+          <ng-container *ngIf="showSkills">
+            <section class="skills" *ngIf="skills$ | async as skills">
+              <div class="textBanner">
+                Skills
+              </div>
+              <div class="skill-list simple">
+                <div class="skill" *ngFor="let skill of skills">
+                  <div class="name">{{skill.name}}</div>
+                  <div class="skillLevel">
+                    <span *ngIf="skill.level < 20">(Basic)</span>
+                    <span *ngIf="skill.level >= 20 && skill.level < 40">(Moderate)</span>
+                    <span *ngIf="skill.level >= 40 && skill.level < 60">(Intermediate)</span>
+                    <span *ngIf="skill.level >= 60 && skill.level < 80">(Advanced)</span>
+                    <span *ngIf="skill.level >= 80 && skill.level < 100">(Expert)</span>
+                    <span *ngIf="skill.level == 100">(Master)</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </ng-container>
+
+
+          <div class="section-wrapper" *ngIf="showObjective">
+            <div class="subsection">
+              <div class="textBanner">
+                Objective
+                <div class="pusher"></div>
+                <button mat-button color="primary" (click)="objectiveModal.open()">Edit</button>
+              </div>
+              <div class="info-block">
+                <div class="entry">
+                  <p>{{currentObjective}}</p>
+                </div>
+              </div>
+            </div></div>
+
+          <div class="section-wrapper" *ngIf="showProjects" >
+            <div class="subsection" *ngIf="projects$ | async">
+              <div class="textBanner">Projects</div>
+              <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">
+                <div class="project entry" *ngFor="let project of projectList" cdkDrag cdkDragPreviewContainer="parent">
+                  <div class="title-row draggable" cdkDragHandle>
+                    <div class="name">{{project.name}}</div>
+                    <div class="title">{{project.title}}</div>
+                    <div class="dates">
+                      <ng-container *ngIf="diffYear(project.startDate, project.endDate)">
+                        {{project.startDate | date:"MMM. yyyy" }}
+                      </ng-container>
+                      <ng-container *ngIf="!diffYear(project.startDate, project.endDate)">
+                        {{project.startDate | date:"MMM." }}
+                      </ng-container>
+                      <span class="dateDivider" *ngIf="project.startDate && project.endDate"> - </span>
+                      {{project.endDate | date:"MMM. yyyy" }}
+                    </div>
+                  </div>
+                  <div class="content" [innerHTML]="project.shortDescription">
+                  </div>
+                  <p class="content" *ngIf="project.name == 'CV Builder'">Used to generate this very document!</p>
+                  <div class="meta">
+                    <div class="item stack">
+                      <span class="label">Skills: </span>
+                      <span class="line-item" *ngFor="let skill of project.skills">{{skill.display}}</span>
+                    </div>
+                    <div class="pusher"></div>
+                    <div class="item" *ngIf="project.hasLink">
+                      <span class="label">Link: </span>
+                      <a [href]="project.url">{{project.url}}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div></div>
+
+          <div class="section-wrapper" *ngIf="showEducation">
+            <div class="subsection" *ngIf="education$ | async as education">
+              <div class="textBanner">Education</div>
+              <div class="info-block" *ngFor="let institute of education">
+                <div class="entry">
+                  <div class="title-row">
+                    <div class="name">{{ institute.name }}</div>
+                    <div class="gpa">GPA: {{ institute.gpa }} / {{ institute.gpaMax }}</div>
+                    <div class="dates">Projected Graduation: {{ institute.endMonth }}.{{ institute.endYear }}</div>
+                  </div>
+                  <div class="edu-fields">
+                    <span class="text">Springfield, MO</span>
+                    <span class="divider"> | </span>
+                    <span class="text">{{ institute.degree | titlecase }}</span>
+                    <span class="divider"> | </span>
+                    <span class="text">{{ institute.major }}</span>
+                  </div>
+
+                  <!--            <div class="content" [innerHTML]="institute.details"></div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsection" *ngIf="showCerts">
+            <div class="textBanner">Certifications</div>
+          </div>
+
+          <div class="subsection" *ngIf="showAwards">
+            <div class="textBanner">Awards</div>
+          </div>
+
+        </section>
+      </main>
+    </div>
+
+  </ng-template>
+
+  <aside class="controls noprint">
+    <div class="flex segment control-panel">
+      <div class="title">Theming</div>
+      <mat-form-field appearance="fill" subscriptSizing="dynamic">
+        <mat-label>Theme</mat-label>
+        <select matNativeControl [(ngModel)]="theme">
+          <option selected value="dark">Dark</option>
+          <option selected value="discord">Discord</option>
+          <option selected value="bland">Business Boy</option>
+          <option selected value="winter">Frosty</option>
+          <option selected value="terminal">Codebase</option>
+        </select>
+      </mat-form-field>
+      <button mat-raised-button (click)="isFancy(true)">Human Friendly</button>
+      <button mat-raised-button (click)="isFancy(false)">ATS Friendly</button>
+
+    </div>
+
+    <div class="flex segment control-panel" *ngIf="SimpleLayout">
+      <div class="title">Skills</div>
+      <mat-form-field appearance="fill" subscriptSizing="dynamic">
+        <mat-label>New Skill Decor</mat-label>
+        <select matNativeControl [(ngModel)]="skillDecor">
+          <option selected value="none">Chevron</option>
+          <option selected value="bullets">Bullet Point</option>
+          <option selected value="triangles">Triangles</option>
+          <option selected value="numbers">Numbers</option>
+          <option selected value="js">JS/TS</option>
+          <option selected value="cpp">C++</option>
+        </select>
+      </mat-form-field>
+      <div class="checklist">
+        <mat-checkbox color="primary" [(ngModel)]="showLearning">Show Learning</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showProgress">Use Skill Bars</mat-checkbox>
+      </div>
+    </div>
+
+    <div class="flex segment control-panel">
+      <div class="title">Sections</div>
+      <div class="checklist">
+        <mat-checkbox color="primary" [(ngModel)]="showHeader">Header</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showContacts">Contacts</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showIntro">Intro</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showPhoto" *ngIf="SimpleLayout">Photo</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showInfo" *ngIf="SimpleLayout">Info</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showSkills">Skills</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showObjective">Objective</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showProjects">Projects</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showEducation">Education</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showCerts">Certs</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showAwards">Awards</mat-checkbox>
+      </div>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Contacts
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+          <div class="checklist">
+            <mat-checkbox color="primary" [(ngModel)]="showEmail">Email</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="showPhone">Phone</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="showWebsite">Website</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="showLinkedIn">LinkedIn</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="showGithub">GitHub</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="showTwitter">Twitter</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="showMastodon">Mastodon</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="showTwitch">Twitch</mat-checkbox>
+          </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </aside>
+</div>
+
+<ngx-smart-modal #objectiveModal identifier="objectiveModal" [dismissable]="false" [closable]="false" (onClose)="saveObjective()">
+  <h2>Edit Objective (Local Only)</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Current Objective</mat-label>
+    <textarea matInput [(ngModel)]="currentObjective"></textarea>
+  </mat-form-field>
+  <button mat-raised-button (click)="objectiveModal.close()">Save</button>
+</ngx-smart-modal>
