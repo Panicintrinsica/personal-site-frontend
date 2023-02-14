@@ -22,7 +22,7 @@ export class ResumeComponent implements OnInit {
   projectList: Project[] = []
 
   currentObjective: string | null = ""
-  newSkills = ['C#', '.NET'];
+  newSkills = ['Python', 'C#', '.NET'];
 
   // Controls
   theme = 'dark';
