@@ -3,6 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import {GuiNavbarComponent} from "./components/gui-navbar/gui-navbar.component";
+import {GuiFooterComponent} from "./components/gui-footer/gui-footer.component";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -10,10 +13,13 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatToolbarModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        GuiNavbarComponent,
+        GuiFooterComponent
       ],
     }).compileComponents();
   });

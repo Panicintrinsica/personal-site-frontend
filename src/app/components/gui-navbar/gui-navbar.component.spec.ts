@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GuiNavbarComponent } from './gui-navbar.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 describe('GuiNavbarComponent', () => {
   let component: GuiNavbarComponent;
@@ -8,6 +9,9 @@ describe('GuiNavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        MatToolbarModule
+      ],
       declarations: [ GuiNavbarComponent ]
     })
     .compileComponents();
