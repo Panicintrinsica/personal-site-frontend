@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {ProjectDetailsDialogComponent} from './project-details-dialog.component';
-import {ServerService} from "../../server.service";
+import {ServerService} from "../../services/server.service";
 import {Observable, tap} from "rxjs";
 import {Project} from "../../models/project.model";
 

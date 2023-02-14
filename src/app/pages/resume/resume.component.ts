@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ServerService} from "../../server.service";
+import {ServerService} from "../../services/server.service";
 import {Observable, tap} from "rxjs";
 import {Profile} from "../../models/profile.model";
 import {Project} from "../../models/project.model";

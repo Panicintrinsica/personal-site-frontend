@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Profile} from './models/profile.model';
-import {Skill} from "./models/skill.model";
-import {Project} from "./models/project.model";
-import {environment} from "../environments/environment";
-import {Article} from "./models/article.model";
-import {Education} from "./models/education.model";
+import {Profile} from '../models/profile.model';
+import {Skill} from "../models/skill.model";
+import {Project} from "../models/project.model";
+import {environment} from "../../environments/environment";
+import {Article} from "../models/article.model";
+import {Education} from "../models/education.model";
 
 @Injectable({
   providedIn: 'root'
