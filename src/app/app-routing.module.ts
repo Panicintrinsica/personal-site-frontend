@@ -20,7 +20,7 @@ const routes: Routes = [
     component: ProjectsComponent,
     data: { animation: 'Projects' }},
   {
-    path: 'biography/builder',
+    path: 'cv/builder',
     component: ResumeComponent,
     data: { animation: 'home' }},
 ];
