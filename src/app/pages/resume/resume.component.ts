@@ -12,7 +12,6 @@ import {FormArray, FormBuilder, FormControl} from "@angular/forms";
   selector: 'app-resume',
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ResumeComponent implements OnInit {
   profile$: Observable<Profile>
@@ -24,13 +23,12 @@ export class ResumeComponent implements OnInit {
   projectList: Project[] = []
   skillList: Skill[] = []
 
-
-
   currentObjective: string | null = ""
   newSkills = ['Python', 'C#', '.NET'];
 
   // Controls
-  theme = 'bland';
+  theme = 'dark';
+  SimpleLayout: boolean = false;
 
   showHeader = true;
   showIntro = true;
@@ -55,7 +53,7 @@ export class ResumeComponent implements OnInit {
   showMastodon = true;
   showTwitch = false;
   skillDecor = 'none';
-  SimpleLayout: boolean = true;
+
 
   constructor(private server: ServerService, private fb: FormBuilder) {
     this.profile$ = server.getProfile()
