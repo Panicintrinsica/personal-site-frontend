@@ -21,7 +21,7 @@ import {ResumeComponent} from './pages/resume/resume.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {NgxSmartModalModule} from "ngx-smart-modal";
@@ -59,7 +59,8 @@ import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
         NgxSmartModalModule.forRoot(),
         CdkDropList,
         CdkDrag,
-        CdkDragHandle
+        CdkDragHandle,
+        ReactiveFormsModule
     ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

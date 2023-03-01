@@ -6,6 +6,7 @@ import {Project} from "../../models/project.model";
 import {Skill} from "../../models/skill.model";
 import {Education} from "../../models/education.model";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {FormArray, FormBuilder, FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-resume',
@@ -18,8 +19,12 @@ export class ResumeComponent implements OnInit {
   projects$: Observable<Project[]>
   skills$: Observable<Skill[]>
   education$: Observable<Education[]>
+  skillsAdded = false;
 
   projectList: Project[] = []
+  skillList: Skill[] = []
+
+
 
   currentObjective: string | null = ""
   newSkills = ['Python', 'C#', '.NET'];
@@ -52,13 +57,31 @@ export class ResumeComponent implements OnInit {
   skillDecor = 'none';
   SimpleLayout: boolean = true;
 
-  constructor(private server: ServerService) {
+  constructor(private server: ServerService, private fb: FormBuilder) {
     this.profile$ = server.getProfile()
+    this.education$ = server.getEducation()
+
     this.projects$ = server.getProjects().pipe(tap(data => {
       this.projectList = data
     }))
-    this.skills$ = server.getSkillsByLevel()
-    this.education$ = server.getEducation()
+
+    this.skills$ = server.getSkillsByLevel().pipe(tap(data => {
+      if (!this.skillsAdded){
+        data.forEach((item) => {
+          item.display = true
+          this.skills.push(this.fb.group({
+            name: item.name,
+            level: item.level,
+            highlight: item.highlight,
+            display: true,
+          }))
+          this.skillList = data
+          this.skillsAdded = true;
+        })
+      }
+    }))
+
+
   }
 
   ngOnInit(): void {
@@ -87,5 +110,17 @@ export class ResumeComponent implements OnInit {
     const end = new Date(endDate).getFullYear();
 
     return start != end
+  }
+
+  skillsForm = this.fb.group({
+    skills: this.fb.array([])
+  })
+
+  get skills(): FormArray {
+    return this.skillsForm.get('skills') as FormArray;
+  }
+
+  saveSkills() {
+    this.skillList = this.skills.value.filter( (item: Skill) => item.display )
   }
 }

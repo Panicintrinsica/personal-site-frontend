@@ -68,10 +68,14 @@
         </div>
 
         <div class="sidebar-group" *ngIf="showSkills">
-          <div class="textBanner">Skills</div>
+          <div class="textBanner">Skills
+            <div class="pusher"></div>
+            <button mat-button color="primary" (click)="skillModal.open()">Edit</button>
+          </div>
+
           <section class="skills" *ngIf="skills$ | async as skills">
             <div class="skill-list">
-              <div class="skill" *ngFor="let skill of skills">
+              <div class="skill" *ngFor="let skill of skillList">
                 <progress *ngIf="showProgress" max="100" [value]="skill.level"></progress>
                 <div class="name">{{skill.name}}</div>
                 <div *ngIf="!showProgress" class="skillLevel">
@@ -80,7 +84,7 @@
                   <span *ngIf="skill.level >= 40 && skill.level < 60">Intermediate</span>
                   <span *ngIf="skill.level >= 60 && skill.level < 80">Advanced</span>
                   <span *ngIf="skill.level >= 80 && skill.level < 100">Expert</span>
-                  <span *ngIf="skill.level == 100">Master</span>
+                  <span *ngIf="skill.level >= 100">Master</span>
                 </div>
               </div>
             </div>
@@ -226,9 +230,11 @@
             <section class="skills" *ngIf="skills$ | async as skills">
               <div class="textBanner">
                 Relevant Skills
+                <div class="pusher"></div>
+                <button mat-button color="primary" (click)="skillModal.open()">Edit</button>
               </div>
               <div class="skill-list simple">
-                <div class="skill" *ngFor="let skill of skills">
+                <div class="skill" *ngFor="let skill of skillList">
                   <div class="name">{{skill.name}}</div>
                   <div class="skillLevel">
                     <span *ngIf="skill.level < 20">(Basic)</span>
@@ -236,7 +242,7 @@
                     <span *ngIf="skill.level >= 40 && skill.level < 60">(Intermediate)</span>
                     <span *ngIf="skill.level >= 60 && skill.level < 80">(Advanced)</span>
                     <span *ngIf="skill.level >= 80 && skill.level < 100">(Expert)</span>
-                    <span *ngIf="skill.level == 100">(Master)</span>
+                    <span *ngIf="skill.level >= 100">(Master)</span>
                   </div>
                 </div>
               </div>
@@ -417,4 +423,28 @@
     <textarea matInput [(ngModel)]="currentObjective"></textarea>
   </mat-form-field>
   <button mat-raised-button (click)="objectiveModal.close()">Save</button>
+</ngx-smart-modal>
+
+
+<ngx-smart-modal #skillModal identifier="skillModal" [dismissable]="false" [closable]="false" (onClose)="saveSkills()">
+  <h2>Select Skills</h2>
+
+  <form [formGroup]="skillsForm">
+    <div class="form-array" formArrayName="skills">
+      <div class="fa-item" *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
+          <mat-form-field appearance="fill">
+            <mat-label>Skill Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Skill Level</mat-label>
+            <input matInput type="number" formControlName="level">
+          </mat-form-field>
+            <mat-checkbox formControlName="highlight">Highlight</mat-checkbox>
+            <mat-checkbox formControlName="display">Display</mat-checkbox>
+        </div>
+    </div>
+  </form>
+
+  <button mat-raised-button (click)="skillModal.close()">Save</button>
 </ngx-smart-modal>

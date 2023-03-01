@@ -602,6 +602,11 @@ a, a:visited {
   }
 }
 
+.fa-item {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
 
 .cdk-drag-placeholder {
   opacity: 0;
