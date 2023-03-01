@@ -657,14 +657,17 @@ main[data-theme="bland"].resumePage-single {
       width: auto;
     }
 
-  }
+    .title, .gpa {
+      flex-grow: 0;
+    }
 
-  .project .title {
-    &::before {
+    :not(:first-child)::before {
       content: "|";
       margin-right: 2mm;
+      color: var(--shadeing_high);
     }
   }
+
 
   .simple.label {
     font-weight: bold;
