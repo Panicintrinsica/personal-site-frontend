@@ -25,7 +25,7 @@ export class ResumeComponent implements OnInit {
   newSkills = ['Python', 'C#', '.NET'];
 
   // Controls
-  theme = 'dark';
+  theme = 'bland';
 
   showHeader = true;
   showIntro = true;
@@ -78,7 +78,7 @@ export class ResumeComponent implements OnInit {
     moveItemInArray(this.projectList, event.previousIndex, event.currentIndex);
   }
 
-  isFancy(b: boolean) {
+  isSimple(b: boolean) {
     this.SimpleLayout = b
   }
 

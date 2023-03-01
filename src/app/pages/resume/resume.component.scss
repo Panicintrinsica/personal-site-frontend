@@ -75,8 +75,8 @@ main[data-theme="bland"] {
   --priamryColor: #000000;
   --accentColor: #8f9ccc;
 
-  --shadeing_low: rgba(0, 0, 0, 0.20);
-  --shadeing_high: rgba(0, 0, 0, 0.10);
+  --shadeing_low: rgba(0, 0, 0, 0.1);
+  --shadeing_high: rgba(0, 0, 0, 0.2);
 
   --progressLeft: #6a3d8f;
   --progressRight: #274b70;
@@ -85,10 +85,10 @@ main[data-theme="bland"] {
   --progressBackground2: hsl(0, 0%, 80%);
   --progressBorderColor: hsl(0, 0%, 90%);
 
-  --profileColor: hsl(0, 0%, 90%);
-  --photoFrame: hsl(0, 0%, 90%);
+  --profileColor: hsl(0, 0%, 100%);
+  --photoFrame: hsl(0, 0%, 100%);
   --pageColor: hsl(0, 0%, 100%);
-  --sidebarColor:hsl(0, 0%, 95%);
+  --sidebarColor:hsl(0, 0%, 100%);
 }
 
 main[data-theme="winter"] {
@@ -339,6 +339,7 @@ section.info {
   }
 }
 
+
 .meta .label {
   font-weight: 600;
 }
@@ -444,9 +445,13 @@ section.learning {
     padding: 2mm;
 
     &.simple {
+      margin-left: 0.25in;
       font-size: 1.1em;
-      flex-direction: row;
-      flex-wrap: wrap;
+
+      .name {
+        font-weight: 600;
+        flex-grow: 0;
+      }
 
       .skill {
         gap: 1mm;
@@ -607,4 +612,69 @@ a, a:visited {
   transition: none;
   border: 1px solid var(--shadeing_high);
   box-shadow: 2mm 2mm 4mm black;
+}
+
+
+
+main[data-theme="bland"].resumePage-single {
+  --bodyFont: 'Calbri', sans-serif;
+  --bodyFontCond: 'Calbri', sans-serif;
+  --headerFont: 'Calbri', sans-serif;
+  --UiFont: 'Calbri', sans-serif;
+  --HeroFont: 'Calbri', sans-serif;
+
+  .subline {
+    opacity: 100%;
+  }
+
+  .intro {
+    margin: 1rem 0;
+  }
+
+  .entry,  {
+    margin: 0 0 0 .25in;
+
+    +.entry {
+      margin: 5mm 0 0 .25in;
+    }
+
+  }
+
+  .title-row {
+    font-size: 12pt;
+    border: none;
+    gap: 2mm;
+
+    .name {
+      font-size: 12pt;
+      font-weight: 600;
+      flex-grow: 0;
+      width: auto;
+    }
+
+  }
+
+  .project .title {
+    &::before {
+      content: "|";
+      margin-right: 2mm;
+    }
+  }
+
+  .simple.label {
+    font-weight: bold;
+    margin-right: 6px;
+  }
+
+  .textBanner{
+    margin: 2mm 0;
+    padding: 0;
+
+    background: transparent;
+    font-size: 16pt;
+
+    &::before {
+      content: unset;
+    }
+  }
 }

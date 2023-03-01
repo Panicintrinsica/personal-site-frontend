@@ -1,6 +1,6 @@
 <div class="page-container flex-row">
 
-  <ng-template [ngIf]="SimpleLayout">
+  <ng-template [ngIf]="!SimpleLayout">
     <main *ngIf="profile$ | async as profile" class="resumePage" id="printable" [attr.data-theme]="theme">
       <section class="sidebar">
         <section class="profile" *ngIf="showHeader">
@@ -190,7 +190,7 @@
     </main>
   </ng-template>
 
-  <ng-template [ngIf]="!SimpleLayout">
+  <ng-template [ngIf]="SimpleLayout">
 
     <div class="resumePage-single">
       <main *ngIf="profile$ | async as profile" class="resumePage-single" id="printable" [attr.data-theme]="theme">
@@ -200,39 +200,24 @@
             <div class="subline">Software Engineer ({{profile.pronouns}})</div>
           </section>
 
-          <section *ngIf="showContacts"  class="contacts simple">
-            <div class="item" *ngIf="showEmail">
-              <mat-icon>email</mat-icon>
+          <section class="contacts simple">
+            <div class="item">
+              <div class="simple label">Email: </div>
               <a href="mailto:{{profile.email}}">{{profile.email}}</a>
             </div>
-            <div class="item" *ngIf="showPhone">
-              <mat-icon>phone</mat-icon>
+            <div class="item">
+              <div class="simple label">Phone: </div>
               <a href="tel:360-499-3845">(360) 499-EVIL</a>
             </div>
-            <div class="item" *ngIf="showWebsite">
-              <mat-icon>website</mat-icon>
-              <a href="https://corbin.dev">Corbin.dev</a>
+            <div class="item" >
+              <div class="simple label">Website: </div>
+              <a href="https://corbin.dev">https://corbin.dev</a>
             </div>
-            <div class="item" *ngIf="showLinkedIn">
-              <i class="fa-brands fa-linkedin"></i>
+            <div class="item" >
+              <div class="simple label">LinkedIn: </div>
               <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>
             </div>
-            <div class="item" *ngIf="showGithub">
-              <i class="fa-brands fa-github"></i>
-              <a href="https://github.com/Panicintrinsica">Panicintrinsica</a>
-            </div>
-            <div class="item" *ngIf="showTwitter">
-              <i class="fa-brands fa-twitter"></i>
-              <a href="https://twitter.com/emrysCorbin">@EmrysCorbin</a>
-            </div>
-            <div class="item" *ngIf="showMastodon">
-              <i class="fa-brands fa-mastodon"></i>
-              <a href="https://mastodon.social/@emrysCorbin">@emrysCorbin@mastodon.social</a>
-            </div>
-            <div class="item" *ngIf="showTwitch">
-              <i class="fa-brands fa-twitch"></i>
-              <a href="https://www.twitch.tv/panicintrinsica/">Panicintrinsica</a>
-            </div>
+
           </section>
 
           <section *ngIf="showIntro" class="intro simple" [innerHTML]="profile.shortDescription"></section>
@@ -240,7 +225,7 @@
           <ng-container *ngIf="showSkills">
             <section class="skills" *ngIf="skills$ | async as skills">
               <div class="textBanner">
-                Skills
+                Relevant Skills
               </div>
               <div class="skill-list simple">
                 <div class="skill" *ngFor="let skill of skills">
@@ -275,7 +260,7 @@
 
           <div class="section-wrapper" *ngIf="showProjects" >
             <div class="subsection" *ngIf="projects$ | async">
-              <div class="textBanner">Projects</div>
+              <div class="textBanner">Work Experience</div>
               <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">
                 <div class="project entry" *ngFor="let project of projectList" cdkDrag cdkDragPreviewContainer="parent">
                   <div class="title-row draggable" cdkDragHandle>
@@ -283,13 +268,13 @@
                     <div class="title">{{project.title}}</div>
                     <div class="dates">
                       <ng-container *ngIf="diffYear(project.startDate, project.endDate)">
-                        {{project.startDate | date:"MMM. yyyy" }}
+                        {{project.startDate | date:"MMMM yyyy" }}
                       </ng-container>
                       <ng-container *ngIf="!diffYear(project.startDate, project.endDate)">
-                        {{project.startDate | date:"MMM." }}
+                        {{project.startDate | date:"MMMM" }}
                       </ng-container>
-                      <span class="dateDivider" *ngIf="project.startDate && project.endDate"> - </span>
-                      {{project.endDate | date:"MMM. yyyy" }}
+                      <span class="dateDivider" *ngIf="project.startDate && project.endDate"> to </span>
+                      {{project.endDate | date:"MMMM yyyy" }}
                     </div>
                   </div>
                   <div class="content" [innerHTML]="project.shortDescription">
@@ -361,12 +346,12 @@
           <option selected value="terminal">Codebase</option>
         </select>
       </mat-form-field>
-      <button mat-raised-button (click)="isFancy(true)">Human Friendly</button>
-      <button mat-raised-button (click)="isFancy(false)">ATS Friendly</button>
+      <button mat-raised-button (click)="isSimple(false)">Human Friendly</button>
+      <button mat-raised-button (click)="isSimple(true)">ATS Friendly</button>
 
     </div>
 
-    <div class="flex segment control-panel" *ngIf="SimpleLayout">
+    <div class="flex segment control-panel" *ngIf="!SimpleLayout">
       <div class="title">Skills</div>
       <mat-form-field appearance="fill" subscriptSizing="dynamic">
         <mat-label>New Skill Decor</mat-label>
@@ -391,8 +376,8 @@
         <mat-checkbox color="primary" [(ngModel)]="showHeader">Header</mat-checkbox>
         <mat-checkbox color="primary" [(ngModel)]="showContacts">Contacts</mat-checkbox>
         <mat-checkbox color="primary" [(ngModel)]="showIntro">Intro</mat-checkbox>
-        <mat-checkbox color="primary" [(ngModel)]="showPhoto" *ngIf="SimpleLayout">Photo</mat-checkbox>
-        <mat-checkbox color="primary" [(ngModel)]="showInfo" *ngIf="SimpleLayout">Info</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showPhoto" *ngIf="!SimpleLayout">Photo</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="showInfo" *ngIf="!SimpleLayout">Info</mat-checkbox>
         <mat-checkbox color="primary" [(ngModel)]="showSkills">Skills</mat-checkbox>
         <mat-checkbox color="primary" [(ngModel)]="showObjective">Objective</mat-checkbox>
         <mat-checkbox color="primary" [(ngModel)]="showProjects">Projects</mat-checkbox>
@@ -402,7 +387,7 @@
       </div>
     </div>
 
-    <mat-accordion>
+    <mat-accordion *ngIf="!SimpleLayout">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
