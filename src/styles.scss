@@ -24,11 +24,14 @@ html {
   --primary: #009fff;
   --secondary: #75b7ba;
   --accent: #00f9ff;
+  --link: #ffffff;
 
   // Segment
   --body: #242424;
   --body-highlight: #262626;
   --body-lowlight: #222222;
+
+  --lighter-25: rgba(255, 255, 255, 0.25);
 
   --page-margins: 3rem 5vw;
 }
@@ -64,6 +67,15 @@ app-projects, app-root, app-cv {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+address {
+  font-style: unset;
+}
+
+a, a:visited, a:hover, a:active {
+  color: var(--link);
+  text-decoration-color: var(--primary);
 }
 
 .pusher {
@@ -129,17 +141,65 @@ app-projects, app-root, app-cv {
   }
 }
 
+
+article {
+
+  header.article-header > h1 {
+    font-size: 2rem;
+    margin: 0 0 .5rem 0;
+  }
+
+  footer.article-footer {
+    display: flex;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--lighter-25);
+  }
+
+  .label {
+    color: var(--secondary);
+    font-weight: 600;
+  }
+
+}
+
 .tag-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
 
+  &.named:before {
+    content: "Tags: ";
+  }
+
   .tag {
     border-radius: 6px;
     padding: 2px 10px;
     border: 1px solid;
     cursor: pointer;
+
+
+    &.article {
+      background-color: var(--tag);
+      border-color: var(--tag-border);
+
+      &:hover {
+        background-color: var(--tag-hover);
+        border-color: var(--tag-border-hover);
+      }
+
+      &.highlight {
+        background-color: var(--tag-highlight);
+        border-color: var(--tag-highlight-border);
+
+        &:hover {
+          background-color: var(--tag-highlight-hover);
+          border-color: var(--tag-highlight-border-hover);
+        }
+      }
+    }
+
 
     &.skill {
       background-color: var(--tag);

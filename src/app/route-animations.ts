@@ -44,6 +44,32 @@ import {
       ])
     ]),
 
+    transition('Home => Article', [
+      query(':enter, :leave',
+        style({ position: 'fixed',  width: '100%'}),
+        { optional: true }),
+      group([
+        query(':enter', [
+          style({ opacity: '0%', filter: 'blur(1rem)' }),
+          animate('0.5s ease-in-out',
+            style({ opacity: '100%', filter: 'blur(0)' }))
+        ], { optional: true })
+      ])
+    ]),
+
+    transition('Article => Home', [
+      query(':enter, :leave',
+        style({ position: 'fixed',  width: '100%'}),
+        { optional: true }),
+      group([
+        query(':enter', [
+          style({ opacity: '0%', filter: 'blur(1rem)' }),
+          animate('0.5s ease-in-out',
+            style({ opacity: '100%', filter: 'blur(0)' }))
+        ], { optional: true })
+      ])
+    ]),
+
     transition('* => Home', [
       query(':enter, :leave',
         style({ position: 'fixed', width: '100%' }),

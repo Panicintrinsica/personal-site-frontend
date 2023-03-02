@@ -26,6 +26,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
+import { ArticleComponent } from './pages/article/article.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
     GuiProjectCardComponent,
     GuiFooterComponent,
     ProjectDetailsDialogComponent,
-    ResumeComponent
+    ResumeComponent,
+    ArticleComponent
   ],
     imports: [
         BrowserModule,

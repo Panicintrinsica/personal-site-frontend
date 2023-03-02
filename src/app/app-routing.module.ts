@@ -4,12 +4,18 @@ import {HomeComponent} from './pages/home/home.component';
 import {BiographyComponent} from './pages/biography/biography.component';
 import {ProjectsComponent} from './pages/projects/projects.component';
 import {ResumeComponent} from './pages/resume/resume.component';
+import {ArticleComponent} from "./pages/article/article.component";
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     data: { animation: 'Home' }
+  },
+  {
+    path: 'article/:slug',
+    component: ArticleComponent,
+    data: { animation: 'Article' }
   },
   {
     path: 'bio',

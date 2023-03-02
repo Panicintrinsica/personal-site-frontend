@@ -1,5 +1,6 @@
     <div class="page">
       <main class="content article-list" *ngIf="article$ | async as articles">
+
         <article class="news segment preview" *ngFor="let article of articles">
           <div class="title-line">
             <div class="title">{{article.title}}</div>
@@ -7,9 +8,12 @@
               <div class="tag" data-type="news">{{article.category}}</div>
             </div>
           </div>
-          <div class="content" [innerHTML]="article.content">
+          <div class="content" [innerHTML]="article.shortContent"></div>
+          <div class="read">
+            <button mat-button routerLink="/article/{{article.slug}}">Read More</button>
           </div>
         </article>
+
       </main>
     </div>
 

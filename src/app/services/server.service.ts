@@ -16,6 +16,10 @@ export class ServerService {
 
   constructor(private http: HttpClient) {}
 
+  getArticle(slug: string): Observable<Article>{
+    return this.http.get<Article>(`${this.API}/articles/${slug}`)
+  }
+
   getArticles(): Observable<Article[]>{
     return this.http.get<Article[]>(`${this.API}/articles`)
   }

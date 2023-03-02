@@ -1,0 +1,23 @@
+<section class="article page">
+
+  <article *ngIf="article$ | async as article" class="segment">
+    <header class="article-header">
+      <h1>{{article.title}}</h1>
+    </header>
+
+    <div class="article-body" [innerHTML]="article.fullContent">
+    </div>
+
+    <footer class="article-footer">
+      <div class="tag-container pusher">
+        <span class="label">Tags: </span>
+        <div class="article tag">Test</div>
+      </div>
+      <address>
+        <span class="label">Author: </span>
+        <a rel="author" routerLink="/bio" class="author">{{article.author}}</a>
+      </address>
+    </footer>
+  </article>
+
+</section>
