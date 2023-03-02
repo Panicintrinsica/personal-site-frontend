@@ -1,20 +1,21 @@
     <div class="page">
-      <main class="content article-list" *ngIf="article$ | async as articles">
+      <section class="content article-list" *ngIf="article$ | async as articles">
 
-        <article class="news segment preview" *ngFor="let article of articles">
-          <div class="title-line">
-            <div class="title">{{article.title}}</div>
-            <div class="tag-container">
-              <div class="tag" data-type="news">{{article.category}}</div>
-            </div>
+        <article *ngFor="let article of articles" class="glow segment">
+          <header>
+            <h1 class="title">{{article.title}}</h1>
+          </header>
+
+          <div class="content" [innerHTML]="article.shortContent">
           </div>
-          <div class="content" [innerHTML]="article.shortContent"></div>
-          <div class="read">
+
+          <footer>
+            <div class="pusher"></div>
             <button mat-button routerLink="/article/{{article.slug}}">Read More</button>
-          </div>
+          </footer>
         </article>
 
-      </main>
+      </section>
     </div>
 
 

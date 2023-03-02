@@ -9,32 +9,32 @@
   </div>
 
   <div class="segment" *ngIf="skills$ | async as skills">
-    <div class="title-line">
-      <div class="title">Skills</div>
-    </div>
-    <div class="tag-container">
-      <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" *ngFor="let skill of skills">{{skill.name}}</div>
+    <header>
+      <h2 class="title">Skills</h2>
+    </header>
+    <div class="content">
+      <div class="tag-container">
+        <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" *ngFor="let skill of skills">{{skill.name}}</div>
+      </div>
     </div>
   </div>
 
   <div class="segment" *ngIf="education$ | async as education">
-    <div class="title-line">
-      <div class="title">Education</div>
+    <header>
+      <h2 class="title">Education</h2>
+    </header>
+    <div class="content">
+
+      <div class="education-entry" *ngFor="let institute of education">
+        <div class="title-line">
+          <div class="name">{{ institute.name }}</div>
+          <div class="gpa">GPA: {{ institute.gpa }}/{{ institute.gpaMax }}</div>
+          <div class="pusher"></div>
+          <div class="dates">{{ institute.isCurrent ? 'Est. Grad: ' : institute.startMonth + '.' + institute.startYear + ' - ' }}{{ institute.endMonth + '.' + institute.endYear }}</div>
+        </div>
+        <div class="content">
+          {{institute.degree | titlecase}}, {{institute.major}}
+        </div>
     </div>
-
-    <div class="education-entry" *ngFor="let institute of education">
-      <div class="title-line">
-        <div class="name">{{ institute.name }}</div>
-        <div class="gpa">GPA: {{ institute.gpa }}/{{ institute.gpaMax }}</div>
-        <div class="pusher"></div>
-        <div class="dates">{{ institute.isCurrent ? 'Est. Grad: ' : institute.startMonth + '.' + institute.startYear + ' - ' }}{{ institute.endMonth + '.' + institute.endYear }}</div>
-      </div>
-      <div class="content">
-        {{institute.degree | titlecase}}, {{institute.major}}
-      </div>
-
-    </div>
-
   </div>
-
 </div>

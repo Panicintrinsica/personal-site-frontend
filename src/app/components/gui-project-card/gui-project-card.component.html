@@ -1,24 +1,24 @@
-<article class="segment project">
-  <section class="image">
+<article class="project-card">
+  <div class="image">
     <img src="assets/projects/{{project.photo}}.png"
          width="320"
          height="180"
          loading="lazy"
          decoding="async"
     >
-  </section>
+  </div>
 
-  <section class="title-line">
+  <div class="title-line">
       <div class="title">{{ project.name }}</div>
       <div class="date">{{ project.endDate | date:"MMM YYYY"}}</div>
-  </section>
+  </div>
 
-  <section class="content" [innerHTML]="project.shortDescription"></section>
+  <div class="content" [innerHTML]="project.shortDescription"></div>
 
-  <section class="action-line">
+  <div class="action-line">
     <button *ngIf="project.hasDetails"  mat-raised-button color="accent" (click)="showDetails()">Details</button>
     <a *ngIf="project.hasLink" mat-raised-button color="primary" href="{{project.url}}">Visit</a>
-  </section>
+  </div>
 
 </article>
 

@@ -1,13 +1,19 @@
 <div class="page" *ngIf="project$ | async as projects">
   <mat-tab-group color="accent" mat-align-tabs="center" class="padded" animationDuration="0ms">
     <mat-tab label="Professional" *ngIf="professional.length">
-      <gui-project-card *ngFor="let project of professional" [project]="project"></gui-project-card>
+      <div class="project-list">
+        <gui-project-card *ngFor="let project of professional" [project]="project"></gui-project-card>
+      </div>
     </mat-tab>
     <mat-tab label="Personal" *ngIf="personal.length">
-      <gui-project-card *ngFor="let project of personal" [project]="project"></gui-project-card>
+      <div class="project-list">
+        <gui-project-card *ngFor="let project of personal" [project]="project"></gui-project-card>
+      </div>
     </mat-tab>
     <mat-tab label="Open Source" *ngIf="openSource.length">
-      <gui-project-card *ngFor="let project of openSource" [project]="project"></gui-project-card>
+      <div class="project-list">
+        <gui-project-card *ngFor="let project of openSource" [project]="project"></gui-project-card>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

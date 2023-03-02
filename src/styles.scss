@@ -21,17 +21,21 @@ html {
   --tag-highlight-border: hsl(245, 25%, 60%);
   --tag-highlight-border-hover: hsla(245, 25%, 60%, 1);
 
-  --primary: #009fff;
-  --secondary: #75b7ba;
-  --accent: #00f9ff;
+  --primary-light: #80cfff;
+  --primary: hsl(203, 100%, 50%);
+  --secondary: hsl(183, 33%, 59%);
+  --accent: hsl(181, 100%, 50%);
   --link: #ffffff;
 
   // Segment
-  --body: #242424;
-  --body-highlight: #262626;
-  --body-lowlight: #222222;
+  --body-highlight: hsl(210, 5%, 17.5%);
+  --body: hsl(210, 5%, 15%);
+  --body-lowlight: hsl(210, 5%, 12.5%);
+  --body-accent: hsl(210, 15%, 25%);
 
+  --lighter-10: rgba(255, 255, 255, 0.10);
   --lighter-25: rgba(255, 255, 255, 0.25);
+  --darker-25: rgba(0, 0, 0, 0.25);
 
   --page-margins: 3rem 5vw;
 }
@@ -58,9 +62,18 @@ html, body {
   font-size: 18px;
 }
 
+h1 { font-size: 2rem }
+h2 { font-size: 1.5rem }
+h3 { font-size: 1.4rem }
+h4 { font-size: 1.3rem }
+
 h1, h2, h3, h4, h5, h6, .title, .menu-header {
   font-family: var(--headerFont);
-  color: var(--primary);
+  color: var(--primary-light);
+}
+
+gui-project-card {
+  overflow: hidden;
 }
 
 app-projects, app-root, app-cv {
@@ -78,17 +91,66 @@ a, a:visited, a:hover, a:active {
   text-decoration-color: var(--primary);
 }
 
+span.label {
+  font-family: var(--headerFont);
+  color: var(--secondary)
+}
+
+.segment, {
+  background-color: var(--body);
+  color: white;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.50);
+  transition: box-shadow 750ms;
+
+  &.padded {
+    padding: .33rem .5rem;
+  }
+
+  &.glow:hover {
+    box-shadow: 0 0 8px hsla(203, 100%, 50%, 50%);
+    transition: box-shadow 500ms;
+  }
+
+  &.flex {
+    display: flex;
+    flex-direction: column;
+  };
+
+  header {
+    padding: .33rem .5rem;
+    display: flex;
+    background: var(--body-highlight);
+
+    .title {
+      margin: unset;
+      flex-grow: 1;
+    }
+  };
+
+  footer {
+    display: flex;
+    background: var(--body-lowlight);
+    padding: .33rem .5rem;
+    gap: .33rem;
+  };
+
+  .content {
+    padding: .75rem;
+  }
+}
+
+
 .pusher {
   flex-grow: 1;
 }
 
 .control-panel {
-
   .title {
     color: white;
     font-size: 1.2rem;
   }
-
 }
 
 .mat-expansion-panel-header-title {
@@ -105,69 +167,13 @@ a, a:visited, a:hover, a:active {
   border-color: var(--body-highlight) var(--body-highlight) var(--body-lowlight) var(--body-lowlight);
 }
 
-.segment, {
-  background-color: var(--body);
-  color: white;
-  padding: 1rem 1rem;
-  border-radius: 5px;
-  border: 1px solid;
-  border-color: var(--body-highlight) var(--body-highlight) var(--body-lowlight) var(--body-lowlight);
-
-  &.flex {
-    display: flex;
-    flex-direction: column;
-  };
-
-  .title-line {
-    display: flex;
-
-    .title {
-      font-size: 2rem;
-      flex-grow: 1;
-    }
-  };
-
-  .detail-line {
-    display: flex;
-  };
-
-  .action-line {
-    display: flex;
-    gap: .33rem;
-  };
-
-  .content {
-
-  }
-}
-
-
-article {
-
-  header.article-header > h1 {
-    font-size: 2rem;
-    margin: 0 0 .5rem 0;
-  }
-
-  footer.article-footer {
-    display: flex;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--lighter-25);
-  }
-
-  .label {
-    color: var(--secondary);
-    font-weight: 600;
-  }
-
-}
 
 .tag-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
+  font-family: var(--headerFont);
 
   &.named:before {
     content: "Tags: ";
@@ -242,6 +248,13 @@ article {
   }
 }
 
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: 0.5rem 0;
+}
+
 // Material Overrides
   .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: var(--body-lowlight);
@@ -259,31 +272,6 @@ article {
   .ng-trigger-routeAnimations {
     flex-grow: 1;
   }
-
-//
-//.mat-tab-label, .mat-tab-link, .mat-checkbox-label {
-//  font-family: var(--bodyFont);
-//  color: var(--bodyFont-color);
-//  font-size: 14px;
-//  font-weight: 500;
-//}
-//
-//.mat-mdc-tab-group.padded {
-//  .mat-mdc-tab-header {
-//    margin-bottom: .5rem;
-//  }
-//}
-//
-//.mat-drawer {
-//  padding: .5rem 1rem;
-//  background-color: #333333;
-//  color: var(--bodyFont-color);
-//}
-
-//.mat-drawer-content.mat-sidenav-content {
-//  display: flex;
-//  flex-direction: column;
-//}
 
 .fullpage {
   height: 100vh;
@@ -346,7 +334,11 @@ ul ul{
   max-width: 80vw;
 }
 
-.nsm-content {
+.mdc-dialog__surface {
+  background-color: var(--body) !important;
+}
+
+.nsm-content, .mat-mdc-dialog-container .mdc-dialog__surface {
   background-color: var(--body);
 }
 
