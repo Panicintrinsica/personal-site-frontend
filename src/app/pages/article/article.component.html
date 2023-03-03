@@ -5,7 +5,7 @@
       <h1 class="title">{{article.title}}</h1>
     </header>
 
-    <div class="content" [innerHTML]="article.fullContent">
+    <div class="content" [innerHTML]="article.fullContent | markdown">
     </div>
 
     <footer>

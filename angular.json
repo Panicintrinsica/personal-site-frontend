@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "corbin.dev": {
+    "corbin_dev": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/corbin.dev",
+            "outputPath": "dist/corbin_dev",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -35,9 +35,15 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/prismjs/themes/prism-okaidia.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -76,10 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "corbin.dev:build:production"
+              "browserTarget": "corbin_dev:build:production"
             },
             "development": {
-              "browserTarget": "corbin.dev:build:development"
+              "browserTarget": "corbin_dev:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "corbin.dev:build"
+            "browserTarget": "corbin_dev:build"
           }
         },
         "test": {
@@ -104,7 +110,8 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": []
           }

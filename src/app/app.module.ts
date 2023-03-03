@@ -27,6 +27,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
 import { ArticleComponent } from './pages/article/article.component';
+import {MarkdownModule} from "ngx-markdown";
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ArticleComponent } from './pages/article/article.component';
         MatExpansionModule,
         MatCheckboxModule,
         NgxSmartModalModule.forRoot(),
+        MarkdownModule.forRoot(),
         CdkDropList,
         CdkDrag,
         CdkDragHandle,

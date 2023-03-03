@@ -6,7 +6,7 @@
             <h1 class="title">{{article.title}}</h1>
           </header>
 
-          <div class="content" [innerHTML]="article.shortContent">
+          <div class="content" [innerHTML]="article.shortContent | markdown">
           </div>
 
           <footer>
