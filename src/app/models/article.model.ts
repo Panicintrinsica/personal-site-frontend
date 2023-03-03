@@ -7,4 +7,6 @@ export interface Article {
   slug: string;
   isPublished: boolean;
   author: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
