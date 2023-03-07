@@ -11,9 +11,9 @@
     <div class="detail-line">{{data.type}} | {{data.stack}}</div>
   </div>
 
-  <div class="description" [innerHTML]="data.longDescription"></div>
+  <div class="description" [innerHTML]="data.longDescription" markdown></div>
   <h3>Features</h3>
-  <div class="features" [innerHTML]="data.features"></div>
+  <div class="features" [innerHTML]="data.features" markdown></div>
   <h3>Skills</h3>
   <div class="tag-container cutout">
     <div class="skill tag" *ngFor="let tag of data.skills">{{tag.display}}</div>
