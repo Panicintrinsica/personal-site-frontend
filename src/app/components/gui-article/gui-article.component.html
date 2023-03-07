@@ -1,7 +1,7 @@
 <article class="segment" [ngClass]="{'glow' : isStub}">
   <header>
     <h1 class="title pusher">{{data.title}}</h1>
-    <div class="category tutorial {{data.category | lowercase }}">{{data.category | lowercase }}</div>
+    <div class="category {{data.category | lowercase }}">{{data.category | lowercase }}</div>
   </header>
 
   <div *ngIf="isStub" class="content" [innerHTML]="data.shortContent | markdown"></div>

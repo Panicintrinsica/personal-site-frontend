@@ -61,6 +61,37 @@ html, body {
   font-size: 18px;
 }
 
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  transition: max-width 200ms;
+
+  @media only screen and (min-width: 1000px) {
+    max-width: 900px;
+  }
+  @media only screen and (min-width: 1200px) {
+    max-width: 1000px;
+  }
+  @media only screen and (min-width: 1600px) {
+    max-width: 1200px;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.gap-small { gap: 0.5rem }
+  &.gap-medium { gap: 1rem }
+  &.gap-large { gap: 1.5rem }
+  &.gap-huge { gap: 2rem }
+}
+
+
 h1 { font-size: 2rem }
 h2 { font-size: 1.5rem }
 h3 { font-size: 1.4rem }
@@ -238,19 +269,6 @@ span.label {
   flex-direction: column;
   gap: .5rem;
   padding: 0.5rem 0;
-}
-
-
-
-.fullpage {
-  height: 100vh;
-}
-
-.page {
-  display: flex;
-  flex-direction: column;
-  gap: .75rem 0;
-  margin: var(--page-margins);
 }
 
 

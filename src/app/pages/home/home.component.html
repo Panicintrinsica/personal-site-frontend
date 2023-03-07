@@ -1,13 +1,11 @@
-    <div class="page">
-      <section class="content article-list" *ngIf="article$ | async as articles">
+<div class="page">
+  <section class="content article-list" *ngIf="article$ | async as articles">
 
-        <gui-article *ngFor="let article of articles" [isStub]="true" [data]="article" ></gui-article>
+    <gui-article *ngFor="let article of articles" [isStub]="true" [data]="article" ></gui-article>
 
-        <nav *ngIf="page$ | async">
-          <div class="item">Test</div>
-        </nav>
+    <nav *ngIf="page$ | async">
+      <div class="item">Test</div>
+    </nav>
 
-      </section>
-    </div>
-
-
+  </section>
+</div>

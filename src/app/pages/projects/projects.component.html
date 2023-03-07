@@ -1,5 +1,5 @@
 <div class="page" *ngIf="project$ | async as projects">
-  <mat-tab-group color="accent" mat-align-tabs="center" class="padded" animationDuration="0ms">
+  <mat-tab-group color="accent" mat-align-tabs="center" animationDuration="0ms">
     <mat-tab label="Professional" *ngIf="professional.length">
       <div class="project-list">
         <gui-project-card *ngFor="let project of professional" [project]="project"></gui-project-card>
