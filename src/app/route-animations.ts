@@ -49,11 +49,20 @@ import {
         style({ position: 'fixed',  width: '100%'}),
         { optional: true }),
       group([
-        query(':enter', [
-          style({ opacity: '0%', filter: 'blur(1rem)' }),
+
+        query(':leave', [
+          style({ opacity: '100%'}),
           animate('0.5s ease-in-out',
+            style({ opacity: '0%' }))
+        ], { optional: true }),
+
+        query(':enter', [
+          style({ opacity: '0%', filter: 'blur(0.25rem)' }),
+          animate('.75s ease-in-out',
             style({ opacity: '100%', filter: 'blur(0)' }))
         ], { optional: true })
+
+
       ])
     ]),
 
