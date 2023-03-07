@@ -17,7 +17,7 @@
       </header>
       <div class="content">
         <div class="tag-container">
-          <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" *ngFor="let skill of skills">{{skill.name}}</div>
+          <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" *ngFor="let skill of skills" (click)="viewSkill(skill._id)">{{skill.name}}</div>
         </div>
       </div>
     </div>
@@ -44,3 +44,11 @@
 
 
 </div>
+
+
+<ngx-smart-modal #skillModal identifier="skillModal" [dismissable]="false" [closable]="false">
+  <h2>{{selectedSkill.name}}</h2>
+
+
+  <button mat-raised-button (click)="skillModal.close()">Close</button>
+</ngx-smart-modal>

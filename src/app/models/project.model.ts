@@ -21,3 +21,12 @@ export interface Project {
   hasDetails: boolean,
   isCurrent: boolean,
 }
+
+
+export interface ProjectStub {
+  _id: string,
+  name: string,
+  startDate: number,
+  endDate: number,
+  category: string
+}

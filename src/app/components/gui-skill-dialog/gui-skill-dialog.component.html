@@ -1,0 +1,43 @@
+<article class="segment skill-details" *ngIf="skill$ | async as skill">
+  <header>
+    <h1 class="title pusher">{{skill.name}}</h1>
+  </header>
+
+
+  <div class="content">
+
+    <div class="flex row gap-small">
+      <div class="cell pusher"><progress max="100" [value]="skill.level"></progress></div>
+      <div class="cell">
+        {{skill.level}} / 100
+      </div>
+    </div>
+
+    <table class="skill-data">
+      <tr>
+        <th>Started: </th>
+        <td>2019</td>
+      </tr>
+      <tr>
+        <th>Used: </th>
+        <td>Regularly</td>
+      </tr>
+    </table>
+
+    <h4>Notes</h4>
+    <div class="notes">
+
+    </div>
+
+    <div class="projects-list" *ngIf="projects$ | async as projects">
+      <h4 *ngIf="projects.length">Projects</h4>
+      <div class="project" *ngFor="let project of projects">
+        {{project.name}}
+      </div>
+    </div>
+
+
+
+  </div>
+
+</article>

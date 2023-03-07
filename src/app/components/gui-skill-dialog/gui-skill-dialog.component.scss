@@ -1,0 +1,60 @@
+
+.skill-details {
+  max-width: 600px;
+}
+
+.content {
+  padding: 0.5rem;
+}
+
+table.skill-data {
+
+  th {
+    text-align: right;
+  }
+
+}
+
+
+progress {
+  --progressBackground: hsl(0, 0%, 5%);
+  --progressBackground2: hsl(0, 0%, 15%);
+  --progressBorderColor: hsl(0, 0%, 20%);
+  --progressLeft: #0058ff;
+  --progressRight: #00c4ff;
+  --progressGlow: hsla(210, 100%, 50%, 33%);
+  --bar-height: 15px;
+  --bar-radius: 3px;
+  width: 100%;
+
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: -webkit-linear-gradient(top, var(--progressBackground), var(--progressBackground2));
+  border: 1px solid var(--progressBorderColor);
+  border-radius: var(--bar-radius);
+  height: var(--bar-height);
+}
+
+progress[value]::-webkit-progress-bar {
+  background-image: -webkit-linear-gradient(top, var(--progressBackground), var(--progressBackground2));
+  background-size: 100% 100%, 100% 100%;
+  border-radius: var(--bar-radius);
+  height: var(--bar-height);
+}
+
+progress[value]::-webkit-progress-value {
+  background-image: -webkit-linear-gradient(left, var(--progressLeft), var(--progressRight));
+  background-size: 100% 100%, 100% 100%;
+  box-shadow: 0 0 6px 1px var(--progressGlow);
+  border-radius: var(--bar-radius) 0 0 var(--bar-radius);
+  height: var(--bar-height);
+}
+
+
+progress[value]::-moz-progress-bar {
+  background-image: -webkit-linear-gradient(left, var(--progressLeft), var(--progressRight));
+  background-size: 100% 100%, 100% 100%;
+  box-shadow: 0 0 6px 1px var(--progressGlow);
+  border-radius: var(--bar-radius) 0 0 var(--bar-radius);
+  height: var(--bar-height);
+}

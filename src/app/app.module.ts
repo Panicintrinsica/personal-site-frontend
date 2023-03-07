@@ -29,6 +29,7 @@ import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
 import { ArticleComponent } from './pages/article/article.component';
 import {MarkdownModule} from "ngx-markdown";
 import { GuiArticleComponent } from './components/gui-article/gui-article.component';
+import {GuiSkillsDialogComponent} from "./components/gui-skill-dialog/gui-skill-dialog.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { GuiArticleComponent } from './components/gui-article/gui-article.compon
     GuiProjectCardComponent,
     GuiFooterComponent,
     ProjectDetailsDialogComponent,
+    GuiSkillsDialogComponent,
     ResumeComponent,
     ArticleComponent,
     GuiArticleComponent

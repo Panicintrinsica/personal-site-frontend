@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Profile} from '../models/profile.model';
 import {Skill} from "../models/skill.model";
-import {Project} from "../models/project.model";
+import {Project, ProjectStub} from "../models/project.model";
 import {environment} from "../../environments/environment";
 import {Article} from "../models/article.model";
 import {Education} from "../models/education.model";
@@ -28,13 +28,16 @@ export class ServerService {
     return this.http.get<number>(`${this.API}/articles/count`)
   }
 
-
   getArticlePage(page: number): Observable<Article[]>{
-    return this.http.get<Article[]>(`${this.API}/articles/page/${{page}}`)
+    return this.http.get<Article[]>(`${this.API}/articles/page/${page}`)
   }
 
   getProfile(): Observable<Profile>{
     return this.http.get<Profile>(`${this.API}/profile`)
+  }
+
+  getSkill(id: string): Observable<Skill>{
+    return this.http.get<Skill>(`${this.API}/skills/${id}`)
   }
 
   getSkillsByName(): Observable<Skill[]>{
@@ -47,6 +50,10 @@ export class ServerService {
 
   getProjects(): Observable<Project[]>{
     return this.http.get<Project[]>(`${this.API}/projects`)
+  }
+
+  getProjectsBySkill(skillID: string): Observable<ProjectStub[]>{
+    return this.http.get<ProjectStub[]>(`${this.API}/projects/bySkill/${skillID}`)
   }
 
   getEducation(): Observable<Education[]>{
