@@ -13,6 +13,11 @@ const routes: Routes = [
     data: { animation: 'Home' }
   },
   {
+    path: 'page/:id',
+    component: HomeComponent,
+    data: { animation: 'Home' }
+  },
+  {
     path: 'article/:slug',
     component: ArticleComponent,
     data: { animation: 'Article' }

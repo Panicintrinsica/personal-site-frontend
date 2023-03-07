@@ -1,36 +1,3 @@
 <section class="article page">
-
-  <article *ngIf="article$ | async as article" class="segment">
-    <header>
-      <h1 class="title">{{article.title}}</h1>
-    </header>
-
-    <div class="content" [innerHTML]="article.fullContent | markdown">
-    </div>
-
-    <footer>
-      <div class="tag-container pusher">
-        <span class="label">Tags: </span>
-        <div class="article tag" *ngFor="let tag of article.tags">{{tag}}</div>
-      </div>
-      <div class="timestamp">
-
-        <div *ngIf="(article.createdAt === article.updatedAt); else updated">
-          <span class="label">Posted: </span>
-          <span class="time">{{ article.createdAt | date : 'short'  }}</span>
-        </div>
-
-        <ng-template #updated>
-          <span class="label">Posted: </span>
-          <span class="time">{{ article.updatedAt | date : 'short'  }}</span>
-        </ng-template>
-
-      </div>
-      <address>
-        <span class="label">Author: </span>
-        <a rel="author" routerLink="/bio" class="author">{{article.author}}</a>
-      </address>
-    </footer>
-  </article>
-
+  <gui-article *ngIf="article$ | async as article" [data]="article"></gui-article>
 </section>

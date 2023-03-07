@@ -1,19 +1,11 @@
     <div class="page">
       <section class="content article-list" *ngIf="article$ | async as articles">
 
-        <article *ngFor="let article of articles" class="glow segment">
-          <header>
-            <h1 class="title">{{article.title}}</h1>
-          </header>
+        <gui-article *ngFor="let article of articles" [isStub]="true" [data]="article" ></gui-article>
 
-          <div class="content" [innerHTML]="article.shortContent | markdown">
-          </div>
-
-          <footer>
-            <div class="pusher"></div>
-            <button mat-button routerLink="/article/{{article.slug}}">Read More</button>
-          </footer>
-        </article>
+        <nav *ngIf="page$ | async">
+          <div class="item">Test</div>
+        </nav>
 
       </section>
     </div>

@@ -28,6 +28,7 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
 import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
 import { ArticleComponent } from './pages/article/article.component';
 import {MarkdownModule} from "ngx-markdown";
+import { GuiArticleComponent } from './components/gui-article/gui-article.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MarkdownModule} from "ngx-markdown";
     GuiFooterComponent,
     ProjectDetailsDialogComponent,
     ResumeComponent,
-    ArticleComponent
+    ArticleComponent,
+    GuiArticleComponent
   ],
     imports: [
         BrowserModule,

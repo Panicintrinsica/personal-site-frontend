@@ -24,6 +24,15 @@ export class ServerService {
     return this.http.get<Article[]>(`${this.API}/articles`)
   }
 
+  getArticlePageCount(): Observable<number>{
+    return this.http.get<number>(`${this.API}/articles/count`)
+  }
+
+
+  getArticlePage(page: number): Observable<Article[]>{
+    return this.http.get<Article[]>(`${this.API}/articles/page/${{page}}`)
+  }
+
   getProfile(): Observable<Profile>{
     return this.http.get<Profile>(`${this.API}/profile`)
   }
