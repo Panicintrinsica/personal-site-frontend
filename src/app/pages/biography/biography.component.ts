@@ -24,6 +24,6 @@ export class BiographyComponent implements OnInit {
   }
 
   viewSkill(id: string) {
-    this.dialog.open(GuiSkillsDialogComponent, { data: id});
+    this.dialog.open(GuiSkillsDialogComponent, { data: id, autoFocus: false});
   }
 }
