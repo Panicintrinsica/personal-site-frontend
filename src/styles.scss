@@ -20,6 +20,10 @@
   --tag-highlight-border: hsl(245, 25%, 60%);
   --tag-highlight-border-hover: hsla(245, 25%, 60%, 1);
 
+  --personal-gradient: linear-gradient(315deg, rgb(31, 53, 61) 0%, rgb(30, 30, 30) 50%);
+  --professional-gradient: linear-gradient(315deg, rgb(61, 26, 26) 0%, rgb(30, 30, 30) 50%);
+  --openSource-gradient: linear-gradient(315deg, rgb(23, 66, 21) 0%, rgb(30, 30, 30) 50%);
+
   --primary-light: #80cfff;
   --primary: hsl(203, 100%, 50%);
   --secondary: hsl(183, 33%, 59%);
@@ -161,6 +165,7 @@ span.label {
     padding: .33rem .5rem;
     display: flex;
     background: var(--body-highlight);
+    align-items: baseline;
 
     .title {
       margin: unset;
