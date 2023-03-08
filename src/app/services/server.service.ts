@@ -56,6 +56,10 @@ export class ServerService {
     return this.http.get<ProjectStub[]>(`${this.API}/projects/bySkill/${skillID}`)
   }
 
+  getProjectBySlug(slug: string): Observable<Project>{
+    return this.http.get<Project>(`${this.API}/projects/bySlug/${slug}`)
+  }
+
   getEducation(): Observable<Education[]>{
     return this.http.get<Education[]>(`${this.API}/education`)
   }

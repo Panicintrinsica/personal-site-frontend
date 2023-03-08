@@ -16,17 +16,18 @@ export interface Project {
   stack: string,
   url: string,
   photo: string,
+  slug: string,
   category: string
   hasLink: boolean,
   hasDetails: boolean,
   isCurrent: boolean,
 }
 
-
 export interface ProjectStub {
   _id: string,
   name: string,
   startDate: number,
   endDate: number,
-  category: string
+  category: string,
+  slug: string,
 }

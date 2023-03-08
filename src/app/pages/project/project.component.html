@@ -1,0 +1,22 @@
+<div class="page" *ngIf="project$ | async as project">
+
+  <article class="segment">
+    <header class="{{project.category}}">
+      <h1 class="title pusher">{{project.name}}</h1>
+
+      <div class="date">
+        {{project.startDate | date: 'd.M.yy'}}
+        <span *ngIf="project.startDate && project.endDate">to</span>
+        {{project.endDate | date: 'd.M.yy'}}
+      </div>
+    </header>
+
+    <div class="content">
+      <div [innerHTML]="project.longDescription" markdown></div>
+      <h4>Project Features</h4>
+      <div [innerHTML]="project.features" markdown></div>
+    </div>
+
+  </article>
+
+</div>

@@ -16,7 +16,7 @@
   <div class="content" [innerHTML]="project.shortDescription"></div>
 
   <div class="action-line">
-    <button *ngIf="project.hasDetails"  mat-raised-button color="accent" (click)="showDetails()">Details</button>
+    <button *ngIf="project.hasDetails"  mat-raised-button color="accent" routerLink="/project/{{project.slug}}">Details</button>
     <a *ngIf="project.hasLink" mat-raised-button color="primary" href="{{project.url}}">Visit</a>
   </div>
 

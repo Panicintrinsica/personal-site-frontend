@@ -30,6 +30,7 @@ import { ArticleComponent } from './pages/article/article.component';
 import {MarkdownModule} from "ngx-markdown";
 import { GuiArticleComponent } from './components/gui-article/gui-article.component';
 import {GuiSkillsDialogComponent} from "./components/gui-skill-dialog/gui-skill-dialog.component";
+import { ProjectComponent } from './pages/project/project.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {GuiSkillsDialogComponent} from "./components/gui-skill-dialog/gui-skill-
     GuiSkillsDialogComponent,
     ResumeComponent,
     ArticleComponent,
-    GuiArticleComponent
+    GuiArticleComponent,
+    ProjectComponent
   ],
     imports: [
         BrowserModule,

@@ -27,6 +27,7 @@ export class GuiProjectCardComponent implements OnInit {
     skills: [{display: "", value: ""}],
     stack: "",
     startDate: 0,
+    slug: "",
     title: "",
     type: "",
     url: ""

@@ -5,6 +5,7 @@ import {BiographyComponent} from './pages/biography/biography.component';
 import {ProjectsComponent} from './pages/projects/projects.component';
 import {ResumeComponent} from './pages/resume/resume.component';
 import {ArticleComponent} from "./pages/article/article.component";
+import {ProjectComponent} from "./pages/project/project.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: 'projects',
     component: ProjectsComponent,
     data: { animation: 'Projects' }},
+  {
+    path: 'project/:slug',
+    component: ProjectComponent,
+    data: { animation: 'Project' }},
   {
     path: 'cv/builder',
     component: ResumeComponent,
